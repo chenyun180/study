@@ -11,9 +11,7 @@ import redis.clients.jedis.Jedis;
 import java.util.Collections;
 
 /**
- * @author: chenyun
- * @Date: 2020/7/2 9:35
- * @Description: redis实现的锁相关方法
+ *  redis实现的锁相关方法
  */
 @Configuration
 public class RedisCacheUtil {

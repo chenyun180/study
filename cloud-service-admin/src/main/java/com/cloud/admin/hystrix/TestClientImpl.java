@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.stream.Stream;
 
 /**
- *  @author: chenyun
- *  @Date: 2020/7/1 9:49
- *  @Description: 熔断回调类，必须实现远程调用的client接口。
+ * 熔断回调类，必须实现远程调用的client接口。
  */
 @Service
 public class TestClientImpl implements TestClient {

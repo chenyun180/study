@@ -21,9 +21,7 @@ import java.util.concurrent.FutureTask;
 
 
 /**
- *  @author: chenyun
- *  @Date: 2021/2/3 21:19
- *  @Description: 加载sys_role,sys_dept,sys_user三张表数据到缓存
+ *  加载sys_role,sys_dept,sys_user三张表数据到缓存
  *  注意：使用@PostConstruct注解，加载时机较早，导致使用上下文去获取bean时，会有一些问题。建议这种情况使用CommondLine接口，参考SysCommonCommondLine
  */
 @Service
