@@ -1,0 +1,89 @@
+server:
+  port: 51201
+
+spring:
+  application:
+    name: cloud-gateway
+  redis:
+    host: 10.2.1.3
+    port: 6379
+    timeout: 5000ms
+    jedis:
+      pool:
+        max-active: 3
+        min-idle: 1
+        max-idle: 10
+        max-wait: -1ms #连接池最大等待时间 -1代表无限制
+#  zipkin:
+#    base-url: http://localhost:9411
+#    sender:
+#      type: web
+#  sleuth:
+#    sampler:
+#      probability: 1
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 开启服务注册和发现的功能，并为每一个服务创建了一个route（不需要routes的配置）
+          enabled: true
+          # 路由访问方式：https://gateway_host:gateway_port/大写的serviceId/具体的controller route
+          # 以下将serviceId转成小写
+        #   lower-case-service-id: true
+        routes:
+        # test模块
+        - id: cloud_test
+          uri: lb://cloud-test # uri以lb://开头（lb代表从注册中心获取服务），后面接的就是你需要转发到的服务名称
+          predicates:
+          - Path=/cloud-test/**  #path prefix 已/user开头的请求，自动转发到spring.appliaction.name 为URI的工程中。
+          filters:
+          - StripPrefix=1 # 表示在转发时去掉第一层路径（端口后）：/cloud-test/
+
+        # admin模块
+        - id: cloud_admin
+          uri: lb://cloud-admin
+          predicates:
+          - Path=/cloud-admin/**
+          filters:
+          - StripPrefix=1
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    com.alibaba.nacos.client.config.impl: WARN
+    reactor.ipc.netty: DEBUG
+
+#ribbon:
+#  MaxAutoRetries: 2 #最大重试次数，当Eureka中可以找到服务，但是服务连不上时将会重试，如果eureka中找不到服务则直接走断路器
+#  MaxAutoRetriesNextServer: 3 #切换实例的重试次数
+#  OkToRetryOnAllOperations: false  #对所有操作请求都进行重试，如果是get则可以，如果是post，put等操作没有实现幂等的情况下是很危险的,所以设置为false
+#  ConnectTimeout: 10000  #请求连接的超时时间
+#  ReadTimeout: 10000 #请求处理的超时时间
+
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000  # 指定Feign客户端连接提供者的超时时限   取决于网络环境
+        readTimeout: 5000   # 指定Feign客户端从请求到获取到提供者给出的响应的超时时限  取决于业务逻辑运算时间
+  compression:
+    request:
+      enabled: true   # 开启对请求的压缩
+      mime-types: text/xml, application/xml
+      min-request-size: 2048   # 指定启用压缩的最小文件大小
+    response:
+      enabled: true
+
+# eureka:
+#   client:
+#     service-url:
+#       defaultZone: http://localhost:51101/eureka/
+#     enabled: true # 是否启用注册服务 默认为true, false是不启用
+#   instance:
+#     prefer-ip-address: true

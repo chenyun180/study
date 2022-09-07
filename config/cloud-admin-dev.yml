@@ -1,0 +1,112 @@
+server:
+  port: 51401
+
+spring:
+  application:
+    name: cloud-admin
+  redis:
+    host: 10.2.1.3
+    port: 6379
+    timeout: 5000ms
+    jedis:
+      pool:
+        max-active: 3
+        min-idle: 1
+        max-idle: 10
+        max-wait: -1ms #连接池最大等待时间 -1代表无限制
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    # 下面两个：开启生产者确认模式
+#    publisher-confirms: true
+#    publisher-returns: true
+    # 开启消费者手动确认
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+  datasource:
+    # Alibaba druid 连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: root
+    # 连接池的配置信息
+    druid:
+      # 连接池连接数：初始化，最小值，最大值
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 获取连接等待的最长时间（当连接达到最大值，一个请求等待max-wait后没有获取到连接，则会抛异常）
+      max-wait: 60000
+      # 配置多久进行一次检测，检测需要关闭的空闲连接 单位：ms
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      # 打开psCache,并且指定每个连接上psCache大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 通过connection-properties打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 配置监控统计拦截的filters，去掉后监控界面SQL无法统计，wall用于防火墙
+      filters: stat,wall
+      # 配置DruidStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+      # 配置DruidStatViewServlet
+      stat-view-servlet:
+        url-pattern: "/druid/*"
+        # IP白名单
+        allow: 127.0.0.1
+        # IP黑名单 优先级高于白名单
+        deny: 192.168.1.1
+        login-username: admin
+        login-password: admin
+  zipkin:
+    base-url: http://localhost:9411 #指定zipkin服务端地址
+    sender:
+      type: web #追踪日志发送类型，默认为空。但是必须设置，有web,rabbit,kafka
+  sleuth:
+    sampler:
+      probability: 1 #采样请求百分比（默认为0.1 即10%）
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**.xml
+  type-aliases-package: com.cloud.common.model  #配置使用类型别名
+
+feign:
+  httpclient:
+    enabled: false # 关闭httpClient客户端
+  okhttp:
+    enabled: true # 启用okhttp客户端
+  hystrix:
+    enabled: true # 开启熔断器开关
+  client:
+    config:
+      default:
+        connectTimeout: 5000  # 指定Feign客户端连接提供者的超时时限   取决于网络环境
+        readTimeout: 5000   # 指定Feign客户端从请求到获取到提供者给出的响应的超时时限  取决于业务逻辑运算时间
+  compression:
+    request:
+      enabled: true   # 开启对请求的压缩
+      mime-types: text/xml, application/xml
+    response:
+      enabled: true #开启对响应的压缩
+
+#hystrix有一个默认的参数，当某个接口配置了失败断路回调。那么有一个1s的时间。若远程调用响应超过了一秒，即使正常，也会走断路接口（此配置idea中没有提示）
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000 #此时间需要超过feigin的等待超时时间(readTimeout)。解决远程调用正常，但是一直走断路器的问题
+
+logging:
+  level:
+    com.alibaba.nacos.client.config.impl: WARN
