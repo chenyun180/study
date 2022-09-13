@@ -12,9 +12,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 /**
- *  @author: chenyun
- *  @Date: 2020/6/25 22:28
- *  @Description: mq 确认回调配置。需手动开启确认机制
+ *  mq 确认回调配置。需手动开启确认机制
  */
 @Component
 public class MQProducerAckConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {

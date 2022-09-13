@@ -8,11 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 /**
- *  @author: chenyun
- *  @Date: 2020/6/24 18:05
- *  @Description: 通用配置
+ * 通用配置
  */
-
 @Configuration
 public class CommonConfig {
 

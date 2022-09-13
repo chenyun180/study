@@ -22,6 +22,7 @@
         <module>cloud-service-test</module>
         <module>cloud-service-common</module>
         <module>cloud-service-admin</module>
+        <module>cloud-service-search</module>
         <!--<module>cloud-zipkin-server</module>-->
     </modules>
 

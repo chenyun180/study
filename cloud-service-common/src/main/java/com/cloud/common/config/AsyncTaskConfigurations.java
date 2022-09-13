@@ -12,10 +12,9 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import java.util.concurrent.Executor;
 
 /**
- * @author: chenyun
- * @Date: 2020/6/23 14:59
- * @Description: 定时任务相关.
- * 若某个工程引用了common模块，并且报错 error creating bean taskScheduler。可能在启动类上没加上@EnableAsync注解。
+ * 定时任务相关.
+ * 若某个工程引用了common模块，并且报错 error creating bean taskScheduler。
+ * 可能在启动类上没加上@EnableAsync注解。
  */
 @Configuration
 @EnableScheduling
