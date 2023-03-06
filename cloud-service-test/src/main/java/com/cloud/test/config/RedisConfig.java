@@ -1,4 +1,4 @@
-package com.cloud.common.config;
+package com.cloud.test.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

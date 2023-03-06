@@ -1,12 +1,15 @@
 package com.cloud.test.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.common.constants.RedisConstants;
 import com.cloud.common.exception.BusinessException;
+import com.cloud.common.model.test.PersonModel;
 import com.cloud.common.redis.RedisCache;
 import com.cloud.common.redis.RedisCacheUtil;
 import com.cloud.common.utils.service.BaseController;
+import com.cloud.common.utils.service.ResultData;
 import com.cloud.test.config.ParamConfig;
 import com.cloud.test.entity.Person;
 import com.cloud.test.service.IPersonService;
@@ -41,10 +44,10 @@ public class PersonController extends BaseController {
 
     @GetMapping("/testPage")
     @ApiOperation(value = "测试分页", notes = "test page 备注")
-    public String testPage(){
-        Page<Person> page = this.getPage(1,2);
-        personService.personAll(page);
-        return callbackSuccess(personService.page(page));
+    public String testPage(Page<Person> page){
+//        personService.personAll(page);
+        IPage<Person> page1 = personService.page(page);
+        return callbackSuccess(page1);
     }
 
     @PostMapping("/testRedisScan")
@@ -64,6 +67,7 @@ public class PersonController extends BaseController {
     @PostMapping("/getOne")
     public String getOne(@RequestBody JSONObject jsonObject){
         System.out.println("wo lai le ....");
+        ResultData<PersonModel> id = personService.getPersonById(jsonObject.getLong("id"));
         return callbackSuccess(personService.getPersonById(jsonObject.getLong("id")));
     }
 
