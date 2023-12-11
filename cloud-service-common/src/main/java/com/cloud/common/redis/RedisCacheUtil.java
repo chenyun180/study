@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import redis.clients.jedis.Jedis;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 
 /**

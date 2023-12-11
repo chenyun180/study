@@ -15,7 +15,7 @@
         <groupId>com.cloud.study</groupId>
         <artifactId>cloud-study-demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>..</relativePath> <!-- lookup parent from repository -->
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
 
@@ -82,6 +82,24 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>2.1.0</version>
+        </dependency>
+
+
+        <!-- 通过模版生成Excel中，再Excel中设置注解，通过注解把实际的值设置进去 -->
+        <dependency>
+            <groupId>org.jxls</groupId>
+            <artifactId>jxls</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jxls</groupId>
+            <artifactId>jxls-poi</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-jexl3</artifactId>
+            <version>3.1</version>
         </dependency>
 
     </dependencies>

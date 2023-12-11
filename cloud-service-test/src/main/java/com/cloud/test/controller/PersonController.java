@@ -16,9 +16,9 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,13 +29,13 @@ public class PersonController extends BaseController {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
-    @Autowired
+    @Resource
     private IPersonService personService;
-    @Autowired
+    @Resource
     private RedisCacheUtil redisCacheUtil;
-    @Autowired
+    @Resource
     private RedisCache redisCache;
-    @Autowired
+    @Resource
     private ParamConfig paramConfig;
 
 

@@ -1,10 +1,10 @@
 package com.cloud.common.redis;
 
 import com.alibaba.fastjson.JSON;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisCache {
 
-    @Autowired
+    @Resource
     StringRedisTemplate stringRedisTemplate;
 
     /**

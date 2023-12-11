@@ -5,16 +5,17 @@ import com.cloud.admin.client.TestClient;
 import com.cloud.common.model.test.PersonModel;
 import com.cloud.common.utils.service.BaseController;
 import com.cloud.common.utils.service.ServiceUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 @RestController
 @RequestMapping(value = "/admin/sysUser", produces = "application/json;charset=utf-8")
 public class SysUserController extends BaseController {
 
-    @Autowired
+    @Resource
     private TestClient testClient;
 
     /**

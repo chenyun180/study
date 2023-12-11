@@ -4,7 +4,6 @@ import com.cloud.common.model.test.PersonCopy;
 import com.cloud.common.utils.service.BaseController;
 import com.cloud.test.service.IPersonCopyService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,14 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
 @RequestMapping(value = "/test/personCopy", produces = "application/json;charset=utf-8")
 public class PersonCopyController extends BaseController {
 
-    @Autowired
+    @Resource
     ApplicationEventPublisher applicationEventPublisher;
 
-    @Autowired
+    @Resource
     private IPersonCopyService personCopyService;
 
     @PostMapping("/savePerson")

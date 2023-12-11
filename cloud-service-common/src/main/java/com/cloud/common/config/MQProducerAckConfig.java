@@ -6,10 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 /**
  *  mq 确认回调配置。需手动开启确认机制
@@ -19,7 +19,7 @@ public class MQProducerAckConfig implements RabbitTemplate.ConfirmCallback, Rabb
 
     private static final Logger log = LoggerFactory.getLogger(MQProducerAckConfig.class);
 
-    @Autowired
+    @Resource
     private RabbitTemplate rabbitTemplate;
 
     @PostConstruct

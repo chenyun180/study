@@ -11,7 +11,7 @@ spring:
       username: nacos
       password: nacos
       config:
-        server-addr: 10.2.1.2:8848
+        server-addr: 127.0.0.1:8848
         file-extension: yml
         shared-dataids: ${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension},application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
         refreshable-dataids: ${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension},application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}

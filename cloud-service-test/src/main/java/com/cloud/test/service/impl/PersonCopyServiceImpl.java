@@ -11,9 +11,9 @@ import com.cloud.test.task.TestCommonThreadTask;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -26,7 +26,7 @@ public class PersonCopyServiceImpl extends ServiceImpl<PersonCopyMapper, PersonC
 
     private static final Logger logger = LoggerFactory.getLogger(PersonCopyServiceImpl.class);
 
-    @Autowired
+    @Resource
     private CommonThreadPool commonThreadPool;
 
     @Override

@@ -9,8 +9,8 @@ import com.cloud.common.utils.HttpUtil;
 import com.cloud.common.utils.common.CamelCaseUtil;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class BaseController {
 
-    @Autowired
+    @Resource
     protected HttpServletRequest request;
 
     // --------------------------接口返回相关-------------------------------

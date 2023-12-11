@@ -29,12 +29,12 @@ public class SysUserLoadingTask implements Callable<String> {
         String result = "";
         try{
             logger.info("================获取用户数据开始====================");
-            SysUserService sysUserService = SpringUtil.getBean("sysUserServiceImpl", SysUserServiceImpl.class);
-            List<SysUser> sysUserList = sysUserService.getAll();
-
-            //存入redis
-            RedisCache redisCache = SpringUtil.getBean("redisCache", RedisCache.class);
-            redisCache.setString(String.format(RedisConstants.SYS_COMMON_PREFIX, "sysUser"), JSONObject.toJSONString(sysUserList), 600);
+//            SysUserService sysUserService = SpringUtil.getBean("sysUserServiceImpl", SysUserServiceImpl.class);
+//            List<SysUser> sysUserList = sysUserService.getAll();
+//
+//            //存入redis
+//            RedisCache redisCache = SpringUtil.getBean("redisCache", RedisCache.class);
+//            redisCache.setString(String.format(RedisConstants.SYS_COMMON_PREFIX, "sysUser"), JSONObject.toJSONString(sysUserList), 600);
             result = "success";
             logger.info("====================获取用户数据结束====================");
         } catch (Exception e){

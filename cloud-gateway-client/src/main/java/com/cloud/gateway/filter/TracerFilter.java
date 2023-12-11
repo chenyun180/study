@@ -1,6 +1,5 @@
 package com.cloud.gateway.filter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.stereotype.Component;
@@ -17,7 +16,7 @@ public class TracerFilter implements GlobalFilter {
         return chain.filter(exchange);
     }
 
-//    @Autowired
+//    @Resource
 //    Tracer tracer;
 
 }
