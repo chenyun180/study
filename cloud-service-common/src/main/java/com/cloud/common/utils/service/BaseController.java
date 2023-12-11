@@ -97,12 +97,7 @@ public class BaseController {
 
 
     //-----------------------mybatis-plus 分页 相关------------------------
-    /**
-     * 获取分页对象(@RequestBody 接收的不要调用)
-     */
-    protected <T> Page<T> getPage() {
-        return getPage(10);
-    }
+
     /**
      * 获取分页对象(@RequestBody 接收的不要调用)
      */
@@ -116,47 +111,6 @@ public class BaseController {
                 page.setAsc(sortField);
             }else if("descend".equals(sortOrder)){
                 page.setDesc(sortField);
-            }
-        }
-        return page;
-    }
-
-    /**
-     * 获取分页对象(统一通用)
-     */
-    protected <T> Page<T> getPage(long current,long size) {
-        if(current==0){
-            current=1;
-        }
-        if(size==0){
-            size=10;
-        }
-        return new Page<>(current,size);
-    }
-
-    /**
-     * 获取分页排序对象(统一通用)
-     */
-    protected <T> BasePage<T> getBasePage(long current, long size) {
-        return new BasePage<>(current,size);
-    }
-
-    /**
-     * 获取分页对象，并设置排序
-     * @param pageNo
-     * @param pageSize
-     * @param <T>
-     * @return
-     */
-    protected <T> Page<T> getPage(int pageNo,int pageSize) {
-        Page<T> page = new Page<>(HttpUtil.getInt(request, "pageNo", pageNo), HttpUtil.getInt(request, "pageSize", pageSize));
-        String sortOrder = request.getParameter("sortOrder");
-        String sortField = request.getParameter("sortField");
-        if(ObjectUtils.allNotNull(sortOrder,sortField)){
-            if("ascend".equals(sortOrder)){// acs 驼峰转下划线
-                page.setAsc(CamelCaseUtil.camelToLine(sortField));
-            }else if("descend".equals(sortOrder)){// desc 驼峰转下划线
-                page.setDesc(CamelCaseUtil.camelToLine(sortField));
             }
         }
         return page;

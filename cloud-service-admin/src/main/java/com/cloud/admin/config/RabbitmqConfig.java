@@ -1,4 +1,4 @@
-package com.cloud.common.config;
+package com.cloud.admin.config;
 
 import com.cloud.common.constants.RabbitmqConstants;
 import org.springframework.amqp.core.*;

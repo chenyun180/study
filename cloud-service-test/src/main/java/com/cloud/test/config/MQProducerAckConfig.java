@@ -1,4 +1,4 @@
-package com.cloud.common.config;
+package com.cloud.test.config;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
