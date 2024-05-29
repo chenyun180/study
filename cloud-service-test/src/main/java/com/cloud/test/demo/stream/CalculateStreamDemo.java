@@ -2,7 +2,11 @@ package com.cloud.test.demo.stream;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Date;
 
 public class CalculateStreamDemo {
 
@@ -13,11 +17,15 @@ public class CalculateStreamDemo {
     }
 
     public static void main(String[] args) {
-        int[] arr = {3, 2, 31, 4, 15, 6, 13, 28, 9, 10};
-        quickSort(arr, 0, arr.length - 1);
-        System.out.println(JSONObject.toJSONString(arr));
+//        int[] arr = {3, 2, 31, 4, 15, 6, 13, 28, 9, 10};
+//        quickSort(arr, 0, arr.length - 1);
+//        System.out.println(JSONObject.toJSONString(arr));
 
 
+        LocalDateTime l = LocalDateTime.now();
+        String format = l.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        System.out.println(format);
+//        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(l));
     }
 
     // 归并排序

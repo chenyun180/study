@@ -1,9 +1,9 @@
 package com.cloud.test.initLoading.sysloading.task;
 
+import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.common.constants.RedisConstants;
 import com.cloud.common.redis.RedisCache;
-import com.cloud.common.utils.SpringUtil;
 import com.cloud.test.entity.SysDept;
 import com.cloud.test.service.SysDeptService;
 import com.cloud.test.service.impl.SysDeptServiceImpl;
@@ -33,11 +33,11 @@ public class SysDeptLoadingTask implements Callable<String> {
             List<SysDept> sysDeptList = sysDeptService.getAll();
 
             //存入redis
-            RedisCache redisCache = SpringUtil.getBean("redisCache", RedisCache.class);
-            redisCache.setString(String.format(RedisConstants.SYS_COMMON_PREFIX, "sysDept"), JSONObject.toJSONString(sysDeptList), 600);
-
-            String str = redisCache.getString(String.format(RedisConstants.SYS_COMMON_PREFIX, "sysDept"));
-            logger.info("dept result =" + str);
+//            RedisCache redisCache = SpringUtil.getBean("redisCache", RedisCache.class);
+//            redisCache.setString(String.format(RedisConstants.SYS_COMMON_PREFIX, "sysDept"), JSONObject.toJSONString(sysDeptList), 600);
+//
+//            String str = redisCache.getString(String.format(RedisConstants.SYS_COMMON_PREFIX, "sysDept"));
+//            logger.info("dept result =" + str);
             result = "success";
             logger.info("====================获取部门数据结束====================");
         } catch (Exception e){

@@ -16,23 +16,8 @@ import java.util.stream.Collectors;
 public class GroupStream {
 
     public static void main(String[] args) throws Exception {
-        test1();
-        List<Demo> list = getList();
-
-        List<BigDecimal> list1 = Lists.newArrayList(new BigDecimal(111.12));
-//        list1.stream().forEach(x -> x = x.setScale(1, BigDecimal.ROUND_HALF_UP));
-
-        for (BigDecimal b : list1) {
-            b = b.setScale(1, BigDecimal.ROUND_HALF_UP);
-        }
-        System.out.println(JSONObject.toJSONString(list1));
-
-//        test();
-
-//        partition2(list);
 
 
-        System.out.println(Lists.newArrayList());
     }
 
     public static void test1() {

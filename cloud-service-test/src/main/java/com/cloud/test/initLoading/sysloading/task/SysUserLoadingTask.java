@@ -1,16 +1,8 @@
 package com.cloud.test.initLoading.sysloading.task;
 
-import com.alibaba.fastjson.JSONObject;
-import com.cloud.common.constants.RedisConstants;
-import com.cloud.common.redis.RedisCache;
-import com.cloud.common.utils.SpringUtil;
-import com.cloud.test.entity.SysUser;
-import com.cloud.test.service.SysUserService;
-import com.cloud.test.service.impl.SysUserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 
