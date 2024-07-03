@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="test" name="test" isExecutable="true">
+    <startEvent id="sid-6fd55309-0a69-4a96-8171-641152d112f6" name="开始"/>
+    <userTask id="sid-7b872fd4-dc48-47d5-82cf-98f8a8ae0146" name="申请" activiti:assignee="1,3,4"/>
+    <sequenceFlow id="sid-4ff898fb-01d0-4200-8437-5ed06126aaa5" sourceRef="sid-6fd55309-0a69-4a96-8171-641152d112f6" targetRef="sid-7b872fd4-dc48-47d5-82cf-98f8a8ae0146"/>
+    <userTask id="sid-533f5421-5812-4b1c-8aef-65b26a92b154" name="一级审批" activiti:assignee="10,11"/>
+    <sequenceFlow id="sid-edfadb54-420a-4e88-ba10-6107e04dd787" sourceRef="sid-7b872fd4-dc48-47d5-82cf-98f8a8ae0146" targetRef="sid-533f5421-5812-4b1c-8aef-65b26a92b154"/>
+    <userTask id="sid-8a548623-634c-426e-be41-b79cccf32f5d" name="二级审批" activiti:assignee="100,101"/>
+    <sequenceFlow id="sid-299f9bc5-aa55-4f27-8228-7821cf530e6b" sourceRef="sid-533f5421-5812-4b1c-8aef-65b26a92b154" targetRef="sid-8a548623-634c-426e-be41-b79cccf32f5d"/>
+    <endEvent id="sid-c331a690-0922-4fbc-adcb-13f8e98b58c3"/>
+    <sequenceFlow id="sid-b9f7c5fe-308b-4f36-8cda-0ad284d71c45" sourceRef="sid-8a548623-634c-426e-be41-b79cccf32f5d" targetRef="sid-c331a690-0922-4fbc-adcb-13f8e98b58c3"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_test">
+    <bpmndi:BPMNPlane bpmnElement="test" id="BPMNPlane_test">
+      <bpmndi:BPMNShape id="shape-e4824e13-7385-497f-911b-c9462293c4b5" bpmnElement="sid-6fd55309-0a69-4a96-8171-641152d112f6">
+        <omgdc:Bounds x="-200.0" y="-657.2" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-3a33dc4c-b870-4f9d-9358-4a437ef061c8" bpmnElement="sid-7b872fd4-dc48-47d5-82cf-98f8a8ae0146">
+        <omgdc:Bounds x="-205.0" y="-610.0" width="40.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-9c103dea-1b4f-4cf6-b2ec-17d961539df6" bpmnElement="sid-4ff898fb-01d0-4200-8437-5ed06126aaa5">
+        <omgdi:waypoint x="-185.00002" y="-627.2"/>
+        <omgdi:waypoint x="-185.0" y="-610.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-4d3f8efc-4cdb-49e2-94c3-b8016987cbd7" bpmnElement="sid-533f5421-5812-4b1c-8aef-65b26a92b154">
+        <omgdc:Bounds x="-205.0" y="-550.0" width="40.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-51dcc7f7-7875-42fc-8790-789e6c68faaf" bpmnElement="sid-edfadb54-420a-4e88-ba10-6107e04dd787">
+        <omgdi:waypoint x="-185.0" y="-575.0"/>
+        <omgdi:waypoint x="-185.0" y="-550.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-e39ec414-d6c7-461a-bb06-e00007e6921a" bpmnElement="sid-8a548623-634c-426e-be41-b79cccf32f5d">
+        <omgdc:Bounds x="-207.5" y="-490.0" width="45.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-85e317d5-7e9c-4584-93b9-9ad7b74a539e" bpmnElement="sid-299f9bc5-aa55-4f27-8228-7821cf530e6b">
+        <omgdi:waypoint x="-185.0" y="-515.0"/>
+        <omgdi:waypoint x="-185.0" y="-490.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-b6c42000-76dc-4509-96a4-ffb77d3ef7e1" bpmnElement="sid-c331a690-0922-4fbc-adcb-13f8e98b58c3">
+        <omgdc:Bounds x="-200.0" y="-430.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-a8fccaef-7491-4a21-8044-3457b0ffb995" bpmnElement="sid-b9f7c5fe-308b-4f36-8cda-0ad284d71c45">
+        <omgdi:waypoint x="-185.0" y="-460.0"/>
+        <omgdi:waypoint x="-185.0" y="-430.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
