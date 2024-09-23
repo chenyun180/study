@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.time.LocalDate;
 import java.util.*;
 
 public class CommonWriteTest {
 
     public static void main(String[] args) {
+
+        LocalDate now = LocalDate.parse("2024-07-01");
+        System.out.println(now.getYear());
+
         String fileName = "/Users/cloud/study/study_project/testFile/write3.xlsx";
-        write1(fileName);
+//        write1(fileName);
 //        writeMerge(fileName);
 //        writeExcludeFiled(fileName);
 //        complexHeadWrite(fileName);
@@ -26,6 +31,7 @@ public class CommonWriteTest {
 //        dynamicHeadWrite(fileName);
 
     }
+
 
     /**
      * web中的导出

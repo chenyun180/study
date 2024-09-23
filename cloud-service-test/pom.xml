@@ -109,7 +109,12 @@
             <version>${activiti-dependencies.version}</version>
         </dependency>
 
-
+        <!-- cglib包依赖-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
 
         <!-- 通过模版生成Excel中，再Excel中设置注解，通过注解把实际的值设置进去 -->
         <dependency>
