@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 public class SimpleEntity {
 
-    @ExcelProperty(value = "姓名")
+//    @ExcelProperty(value = "姓名")
     private String name;
 
 

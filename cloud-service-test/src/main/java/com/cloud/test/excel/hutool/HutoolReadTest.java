@@ -10,9 +10,10 @@ import java.util.List;
 public class HutoolReadTest {
 
     public static void main(String[] args) {
+        System.out.println((String) null);
         String fileName = "/Users/cloud/study/study_project/testFile/test.xlsx";
 //        readAsBean(fileName);
-        readAsList(fileName);
+//        readAsList(fileName);
     }
 
     /**

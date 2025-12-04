@@ -23,6 +23,7 @@
         <module>cloud-service-common</module>
         <module>cloud-service-admin</module>
         <module>cloud-service-search</module>
+        <module>cloud-service-flow</module>
         <!--<module>cloud-zipkin-server</module>-->
     </modules>
 

@@ -1,8 +1,11 @@
 package com.cloud.test.demo.stream;
 
+import cn.hutool.poi.excel.ExcelReader;
+import cn.hutool.poi.excel.ExcelUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.test.demo.stream.entity.Demo;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -16,8 +19,32 @@ import java.util.stream.Collectors;
 public class GroupStream {
 
     public static void main(String[] args) throws Exception {
+        System.out.println(LocalDate.now());
+        System.out.println(LocalDateTime.now().toString());
+
+    }
 
 
+
+    public static void read2() {
+        ExcelReader reader = ExcelUtil.getReader("/Users/cloud/Downloads/新疆省间现货数据1.xlsx", 0);
+        List<List<Object>> read = reader.read(1);
+        for (List<Object> obj : read) {
+            System.out.println("insert into ads_grid_pomc_t_yxzx_out_jxqk_df(pdate, eqtype, eqname, begintime, endtime, reptype, voltage, updatatime) values ('"
+                    + obj.get(0) + "', '" + obj.get(1) + "', '" + obj.get(2) + "', '" + obj.get(3) + "', '"
+                    + obj.get(4) + "', '" + obj.get(5) + "', '" + obj.get(6) + "', '" + obj.get(7) + "');") ;
+        }
+        System.out.println(JSONObject.toJSONString(read));
+    }
+
+    public static void read1() {
+        ExcelReader reader = ExcelUtil.getReader("/Users/cloud/Downloads/新疆省间现货数据1.xlsx", 1);
+        List<List<Object>> read = reader.read(1);
+        for (List<Object> obj : read) {
+            System.out.println("insert into ads_grid_pomc_t_yxzx_out_kzsnyfycd_df(pdate, periodid, pvalue) values ("
+                    + obj.get(0) + "," + obj.get(1) + "," + obj.get(2) + ");") ;
+        }
+        System.out.println(JSONObject.toJSONString(read));
     }
 
     public static void test1() {
@@ -26,6 +53,7 @@ public class GroupStream {
     }
 
     // 使用POI读取"D:\test\test.sql"文件的内容
+
 
 
     private static String getNowTime() {
@@ -43,9 +71,10 @@ public class GroupStream {
         List<Demo> list = getList();
 
         //两次分组 (分组字段不能为null)
-        Map<String, Map<String, List<Demo>>> collect = list.stream().collect(Collectors.groupingBy(
-                Demo::getTime, Collectors.groupingBy(Demo::getName)
-        ));
+        Map<String, Map<String, List<Demo>>> collect = list.stream()
+                .filter(x -> StringUtils.isNotBlank(x.getTime()) && StringUtils.isNotBlank(x.getName()))
+                .collect(Collectors.groupingBy(Demo::getTime, Collectors.groupingBy(Demo::getName))
+                );
         System.out.println("分组两次：" + JSONObject.toJSONString(collect));
 
         //分组统计次数
@@ -102,7 +131,9 @@ public class GroupStream {
 
 
         //筛选出时间LocalTime在2023-02-01 00:00:00 之后的数据
-        List<Demo> collect2 = list.stream().filter(x -> x.getLocalTime().isAfter(LocalDateTime.of(2023, 2, 1, 0, 0, 0))).collect(Collectors.toList());
+        List<Demo> collect2 = list.stream()
+                .filter(x -> x.getLocalTime().isAfter(LocalDateTime.of(2023, 2, 1, 0, 0, 0)))
+                .collect(Collectors.toList());
 
     }
 

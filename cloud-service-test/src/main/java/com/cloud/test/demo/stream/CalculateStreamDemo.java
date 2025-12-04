@@ -17,6 +17,13 @@ public class CalculateStreamDemo {
     }
 
     public static void main(String[] args) {
+
+        StringBuffer sb = new StringBuffer();
+        for (int i = 1; i <= 96 ; i++) {
+            sb.append("pe" + i + "*" + "pr" + i + "+");
+        }
+        System.out.println(sb.toString());
+
 //        int[] arr = {3, 2, 31, 4, 15, 6, 13, 28, 9, 10};
 //        quickSort(arr, 0, arr.length - 1);
 //        System.out.println(JSONObject.toJSONString(arr));
