@@ -1,0 +1,97 @@
+# ===========================
+# Java 项目常见忽略文件配置
+# ===========================
+
+# 编译输出目录
+target/
+build/
+out/
+bin/
+classes/
+
+# IDE 配置文件
+## IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+## Eclipse
+.eclipse/
+.settings/
+.project
+.classpath
+.factorypath
+
+## NetBeans
+nbproject/
+nbbuild/
+nbdist/
+
+## VS Code
+.vscode/
+
+# Maven
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# Gradle
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+!gradle-wrapper.jar
+
+# 日志文件
+*.log
+logs/
+
+# 临时文件
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# 操作系统文件
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 测试覆盖率报告
+jacoco/
+*.exec
+coverage/
+
+# 打包文件（可选，根据需要取消注释）
+# *.jar
+# *.war
+# *.ear
+
+# Spring Boot
+spring-boot-devtools.properties
+
+# 敏感配置文件（根据需要添加）
+# application-local.yml
+# application-local.properties
+
+# Node modules（如果项目有前端部分）
+node_modules/
+
+# 缓存目录
+.cache/
+
+# 可忽略的模块目录（根据需要调整）
+cloud-zipkin-server/
+cloud-service-test/
+
