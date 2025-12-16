@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  *   MybaitisPlus相关配置
  */
 @Configuration
-@MapperScan("com.cloud.search.mapper")
+@MapperScan("com.cloud.flow.mapper")
 public class MybatisPlusConfig {
     /**
      * 分页插件
