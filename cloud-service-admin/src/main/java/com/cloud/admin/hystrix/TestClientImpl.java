@@ -1,14 +1,11 @@
 package com.cloud.admin.hystrix;
 
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.cloud.admin.client.TestClient;
-import com.cloud.common.model.admin.SysUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Stream;
+import com.alibaba.fastjson.JSONObject;
+import com.cloud.admin.client.TestClient;
 
 /**
  * 熔断回调类，必须实现远程调用的client接口。

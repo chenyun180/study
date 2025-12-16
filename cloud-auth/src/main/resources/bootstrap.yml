@@ -1,9 +1,9 @@
 server:
-  port: 51201
+  port: 51101
 
 spring:
   application:
-    name: cloud-gateway
+    name: cloud-auth
   profiles:
     active: dev
   cloud:
