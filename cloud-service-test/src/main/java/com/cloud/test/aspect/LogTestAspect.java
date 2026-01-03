@@ -1,7 +1,8 @@
 package com.cloud.test.aspect;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.common.model.LogModel;
+import com.cloud.common.model.base.LogModel;
+
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;

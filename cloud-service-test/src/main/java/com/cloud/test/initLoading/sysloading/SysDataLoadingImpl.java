@@ -1,22 +1,13 @@
 package com.cloud.test.initLoading.sysloading;
 
-import com.cloud.common.redis.RedisCache;
-import com.cloud.test.initLoading.sysloading.task.SysDeptLoadingTask;
-import com.cloud.test.initLoading.sysloading.task.SysRoleLoadingTask;
-import com.cloud.test.initLoading.sysloading.task.SysUserLoadingTask;
-import com.cloud.test.service.IPersonService;
+import java.util.concurrent.CountDownLatch;
+
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 
 
 /**

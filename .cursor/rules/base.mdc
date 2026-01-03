@@ -1,0 +1,86 @@
+---
+alwaysApply: true
+---
+## 项目介绍
+
+## 代码组织与结构
+1.1 目录结构
+此项目为微服务项目，才用springboot+spring cloud alibaba。
+采用分层架构以分离关注点并提高可维护性。目录结构如下：
+src/
+ ├── main/
+ │   ├── java/
+ │   │   └── com/example/app/
+ │   │       ├── Application.java (主入口点)
+ │   │       ├── config/          (配置类)
+ │   │       ├── controller/      (REST 控制器)
+ │   │       ├── service/         (业务逻辑服务)
+ │   │       ├── mapper/      (数据访问仓库,存放mybatis mapper接口文件)
+ │   │       ├── model/           (数据传输对象和实体，数据库实体)
+ │   │       ├── exception/       (自定义异常)
+ │   │       ├── util/            (工具类)
+ │   └── resources/
+ │       ├── application.properties/application.yml (应用配置)
+ │       ├── mapper/            (存放mybatis的xml文件)
+ │       └── templates/         (视图模板)
+ └── test/
+     ├── java/
+     │   └── com/example/app/
+     │       ├── controller/      (控制器测试)
+     │       ├── service/         (服务测试)
+     │       └── mapper/      (仓库测试)
+     └── resources/
+         ├── application.properties/application.yml (测试专用配置)
+         ├── mapper/            (存放mybatis的xml文件)
+
+## 代码规范
+- 所有请求方式都用POST请求
+- 分页使用mybatis-plus分页处理
+- 金额计算使用BigDecimal类型计算。禁止使用float和double
+- 以下操作优先使用Hutool工具库：字符串操作`StrUtil`、集合操作`CollUtil`、时间处理`DateUtil`
+- 涉及到Excel操作，优先使用easyExcel库
+- 所有的Redis操作，若有固定前缀，维护在RedisConstants常量文件中
+
+## 代码质量要求
+- 每个方法添加Javadoc注释
+- 方法行数不超过300行
+- 使用描述性的变量、函数和类名 
+- 保持代码简洁明了，遵循KISS原则
+
+## 异常处理原则
+- 所有异常catch必须记录详细日志（堆栈、参数、方法信息）
+- Service层异常由统一异常处理器处理
+- **事务异常**: 在 @Transactional 函数中不要使用try...catch捕获异常
+
+## 严格禁止事项
+1. **文件修改**： 禁止修改`pom.xml`（未经允许）和实体类文件
+2. **对象拷贝**：禁止使用 `BeanUtil.copyProperties()`
+3. **循环查询**：禁止在循环中查询数据，应该使用批量查询
+4. **包名调用**：不要使用完整包名调用类或方法
+5. **数据库变更**：必须生成SQL文档存放在sql/目录
+6. **方法实现**：禁止生成空的方法或者使用测试、默认的值，如果有请在生成完会后告知我。禁止生成TODO信息导致业务写死的情况
+7. **涉及完成功能的修改**：在引入新功能时，一定避免对旧功能产生影响
+
+## 性能优化规范
+
+1. **数据库操作**：
+-避免在循环中频繁查询数据库
+- 使用批量操作代替逐个操作
+- 复杂查询优化SQL性能
+- 不要在service层循环中调用访问数据库的方法厂尽量使用批量查询，批量修改，批量插入门比如下面的错误示例
+```
+for (Integer skuld : skulds) {
+    List<GylSsu> ssuList~= gylSsuManager.getSsuListBySkuId(skuId);
+    ssuListMap. put (skuld, ssuList) ;
+}
+正确写法：
+List<GylSsu> ssuList = gylSsuManager-getSsuListBySkuIds(skuIds);
+```
+2. **缓存策略**：
+- 避免在事多中进行Redis操作
+- 合理设置缓存过期时间
+- 及时清理无效缓存
+
+3. **内存优化**：
+- 及时释放大对象引用
+- 避免创建不必要的临时对象

@@ -1,19 +1,17 @@
 package com.cloud.admin.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.cloud.admin.client.TestClient;
-import com.cloud.common.model.test.PersonModel;
-import com.cloud.common.utils.service.BaseController;
-import com.cloud.common.utils.service.ServiceUtils;
+import javax.annotation.Resource;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import com.alibaba.fastjson.JSONObject;
+import com.cloud.admin.client.TestClient;
 
 @RestController
 @RequestMapping(value = "/admin/sysUser", produces = "application/json;charset=utf-8")
-public class SysUserController extends BaseController {
+public class SysUserController {
 
     @Resource
     private TestClient testClient;
@@ -26,8 +24,6 @@ public class SysUserController extends BaseController {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", "5");
         String result = testClient.getOne(jsonObject);
-        PersonModel personModel = ServiceUtils.parseObject(result, PersonModel.class);
-        System.out.println("返回信息为：" + personModel.getPersonAge() + personModel.getPersonName());
     }
 
 

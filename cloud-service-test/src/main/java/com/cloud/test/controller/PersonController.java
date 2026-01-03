@@ -1,39 +1,34 @@
 package com.cloud.test.controller;
 
+import java.util.Set;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.common.constants.RedisConstants;
-import com.cloud.common.exception.BusinessException;
-import com.cloud.common.model.test.PersonModel;
 import com.cloud.common.redis.RedisCache;
 import com.cloud.common.redis.RedisCacheUtil;
-import com.cloud.common.utils.service.BaseController;
-import com.cloud.common.utils.service.ResultData;
 import com.cloud.test.config.ParamConfig;
-import com.cloud.test.entity.Person;
-import com.cloud.test.service.IPersonService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.Set;
-import java.util.UUID;
 
 @RestController
 @Api(description = "测试接口Controller")
 @RequestMapping("/person")
-public class PersonController extends BaseController {
+public class PersonController  {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
-    @Resource
-    private IPersonService personService;
     @Resource
     private RedisCacheUtil redisCacheUtil;
     @Resource
@@ -41,14 +36,6 @@ public class PersonController extends BaseController {
     @Resource
     private ParamConfig paramConfig;
 
-
-    @GetMapping("/testPage")
-    @ApiOperation(value = "测试分页", notes = "test page 备注")
-    public String testPage(Page<Person> page){
-//        personService.personAll(page);
-        IPage<Person> page1 = personService.page(page);
-        return callbackSuccess(page1);
-    }
 
     @PostMapping("/testRedisScan")
     @ApiImplicitParams({
@@ -62,39 +49,6 @@ public class PersonController extends BaseController {
         for(String localKey : set) {
             redisCache.del(localKey);
         }
-    }
-
-    @PostMapping("/getOne")
-    public String getOne(@RequestBody JSONObject jsonObject){
-        System.out.println("wo lai le ....");
-        ResultData<PersonModel> id = personService.getPersonById(jsonObject.getLong("id"));
-        return callbackSuccess(personService.getPersonById(jsonObject.getLong("id")));
-    }
-
-    @PostMapping("/testMq")
-    public void testMq(@RequestBody JSONObject jsonObject){
-        personService.testMq(jsonObject.getString("routingKey"));
-
-    }
-
-    /**
-     * 此时person对象有了id
-     */
-    @PostMapping("/testMybatisPlus")
-    public void testMybatisPlus(){
-        Person person = new Person();
-        person.setPersonAge(23);
-        person.setPersonName("rain");
-        boolean isSuccess = personService.save(person);
-        if(isSuccess){
-            System.out.println("wozhelishi..." + JSONObject.toJSONString(person));
-        }
-    }
-
-    @PostMapping("/testEx")
-    public void testException(@RequestBody JSONObject jsonObject){
-        String str = null;
-        str.equals("11");
     }
 
     /**
@@ -124,13 +78,6 @@ public class PersonController extends BaseController {
         System.out.println(redisCacheUtil.releaseDistributedLock(localKey, clientId));
     }
 
-    /**
-     * 自定义线程池
-     */
-    @PostMapping("/testExecutor")
-    public String testExecutor(@RequestBody JSONObject jsonObject){
-        return callbackSuccess(personService.testExecutor(jsonObject));
-    }
 
     /**
      * MybatisPlus乐观锁
@@ -141,7 +88,7 @@ public class PersonController extends BaseController {
     @PostMapping("/testOptimism")
     public String testOptimism(@RequestBody JSONObject jsonObject){
         logger.info("11111111");
-        return callbackSuccess(personService.testOptimism(jsonObject.getLong("id")));
+        return null;
     }
     
     /**

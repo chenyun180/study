@@ -1,5 +1,6 @@
-package com.cloud.common.model;
+package com.cloud.common.model.base;
 
+// 日志实体，filter中的日志信息
 public class LogModel {
 
     /**
