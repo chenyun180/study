@@ -1,4 +1,0 @@
-
-1、CommandLineRunner
-    实现CommandLineRunner接口，在spring bean初始化之后，SpringApplication.run()之前执行
-    使用@Order保证多个初始化的顺序。数值越小，执行优先级越高

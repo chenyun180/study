@@ -78,6 +78,9 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:mapper/**.xml
   type-aliases-package: com.cloud.common.model  #配置使用类型别名
+  configuration:
+    # 打印SQL语句（使用slf4j，可以通过logging.level控制）
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 
 feign:
   httpclient:
@@ -107,6 +110,26 @@ hystrix:
           thread:
             timeoutInMilliseconds: 6000 #此时间需要超过feigin的等待超时时间(readTimeout)。解决远程调用正常，但是一直走断路器的问题
 
+# OAuth2资源服务器配置
+security:
+  oauth2:
+    resource:
+      enabled: true
+      resource-id: cloud-resource
+      jwt-signing-key: CloudStudyOAuth2SecretKey2024
+      # 公开接口列表（不需要认证）
+      permit-urls:
+        - /api/public/**
+        - /api/health/**
+
 logging:
   level:
     com.alibaba.nacos.client.config.impl: WARN
+    # MyBatis-Plus SQL日志打印配置
+    com.cloud.admin.mapper: DEBUG
+    # MyBatis SQL日志打印
+    org.apache.ibatis: DEBUG
+    java.sql.Connection: DEBUG
+    java.sql.Statement: DEBUG
+    java.sql.PreparedStatement: DEBUG
+    java.sql.ResultSet: DEBUG

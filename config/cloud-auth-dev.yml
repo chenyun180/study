@@ -1,0 +1,45 @@
+# cloud-auth 认证服务配置
+
+spring:
+  # Redis配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 
+    database: 0
+    timeout: 10000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+
+# JWT配置（原有登录逻辑使用）
+jwt:
+  # 密钥（生产环境请使用更复杂的密钥）
+  secret: CloudStudySecretKey2024!@#$%^&*()_+
+  # 签发者
+  issuer: cloud-auth
+  # Access Token有效期（秒）- 默认2小时
+  access-token-expire: 7200
+  # Access Token有效期（秒）- 记住我模式7天
+  access-token-expire-remember: 604800
+  # Refresh Token有效期（秒）- 7天
+  refresh-token-expire: 604800
+
+# OAuth2认证服务器配置
+oauth2:
+  # JWT签名密钥（与资源服务器保持一致）
+  jwt-signing-key: CloudStudyOAuth2SecretKey2024
+  # Access Token有效期（秒）- 默认2小时
+  access-token-validity-seconds: 7200
+  # Refresh Token有效期（秒）- 默认7天
+  refresh-token-validity-seconds: 604800
+
+# 日志配置
+logging:
+  level:
+    com.cloud.auth: debug
+    org.springframework.security: info
+

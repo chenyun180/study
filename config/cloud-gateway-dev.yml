@@ -31,6 +31,20 @@ spring:
           # 以下将serviceId转成小写
         #   lower-case-service-id: true
         routes:
+        # 认证模块（优先级最高）
+        - id: cloud_auth
+          uri: lb://cloud-auth
+          predicates:
+          - Path=/api/auth/**
+          order: 0
+
+        # 用户模块（路由到admin服务）
+        - id: cloud_user
+          uri: lb://cloud-admin
+          predicates:
+          - Path=/api/user/**
+          order: 1
+
         # test模块
         - id: cloud_test
           uri: lb://cloud-test # uri以lb://开头（lb代表从注册中心获取服务），后面接的就是你需要转发到的服务名称

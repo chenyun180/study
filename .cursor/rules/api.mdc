@@ -1,8 +1,6 @@
 ---
-globs: **/controller/*.java
 alwaysApply: false
 ---
-
 当生成或修改API接口时，需要同步生成对应的API文档，API文档按照模块分不同的文件，每个文件命令按照API的命名规范，模块+API.md。API 放到apiDocs目录中，文档格式如下：
 
 - 接口名称

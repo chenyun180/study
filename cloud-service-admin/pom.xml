@@ -67,12 +67,11 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-        <!--spring cloud sleuth -->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-sleuth-zipkin</artifactId>-->
-            <!--<version>RELEASE</version>-->
-        <!--</dependency>-->
+        <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>easyexcel</artifactId>
+          <version>3.3.2</version>
+      </dependency>
 
     </dependencies>
 
