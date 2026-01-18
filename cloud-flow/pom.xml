@@ -9,18 +9,24 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cloud.search</groupId>
-    <artifactId>cloud-service-search</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <groupId>com.cloud</groupId>
+    <artifactId>cloud-flow</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <activiti-dependencies.version>7.0.0.Beta5</activiti-dependencies.version>
+    </properties>
 
     <dependencies>
         <!--公共模块-->
         <dependency>
-            <groupId>com.cloud.study</groupId>
-            <artifactId>cloud-service-common</artifactId>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
 
         <!--由于spring cloud gateway网关与spring-boot-starter-tomcat冲突，所以将web配置从common公共模块移到各个工程中-->
         <!--web依赖 移除默认的tomcat，使用undertow-->
@@ -66,7 +72,27 @@
         <!--<version>RELEASE</version>-->
         <!--</dependency>-->
 
-    </dependencies>
+        <!-- activiti依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <version>2.7.10</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.activiti.dependencies</groupId>
+            <artifactId>activiti-dependencies</artifactId>
+            <version>${activiti-dependencies.version}</version>
+            <scope>import</scope>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring-boot-starter</artifactId>
+            <version>${activiti-dependencies.version}</version>
+        </dependency>
+
+    </dependencies>
 
 </project>

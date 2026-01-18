@@ -18,11 +18,11 @@
     </parent>
 
     <modules>
-        <module>cloud-gateway-client</module>
-        <module>cloud-service-common</module>
-        <module>cloud-service-admin</module>
-        <module>cloud-service-search</module>
-        <module>cloud-service-flow</module>
+        <module>cloud-gateway</module>
+        <module>cloud-common</module>
+        <module>cloud-admin</module>
+        <module>cloud-search</module>
+        <module>cloud-flow</module>
         <!--<module>cloud-zipkin-server</module>-->
         <module>cloud-auth</module>
     </modules>

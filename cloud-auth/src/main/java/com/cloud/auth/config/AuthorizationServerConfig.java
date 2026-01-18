@@ -1,6 +1,9 @@
 package com.cloud.auth.config;
 
-import lombok.RequiredArgsConstructor;
+import java.util.Arrays;
+
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -21,8 +24,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
-import javax.sql.DataSource;
-import java.util.Arrays;
+import lombok.RequiredArgsConstructor;
 
 /**
  * OAuth2 认证服务器配置
